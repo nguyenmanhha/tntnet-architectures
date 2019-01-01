@@ -1,0 +1,45 @@
+<%pre>
+#include <cxxtools/json.h>
+</%pre>
+<%cpp>
+std::string maincomp = request.getArg("next");
+</%cpp>
+<%include>session.ecpp</%include>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>tntnet application MyApi</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="MyApi application">
+    <link rel="stylesheet" href="/MyApi.css" type="text/css">
+    <link rel="stylesheet" href="<$ maincomp $>.css" type="text/css">
+    <script src="/js/jquery-2.1.4.min.js"></script>
+    <script src="/js/noty/packaged/jquery.noty.packaged.min.js"></script>
+    <script src="/js/tntnet.js"></script>
+    <script src="/MyApi.js"></script>
+    <script src="<$ maincomp $>.js"></script>
+    <script>
+      $(function() {
+          processNotifications(<$$ cxxtools::Json(noty) $>)
+      });
+    </script>
+  </head>
+  <body>
+    <div id="header">
+      <span id="title">MyApi application</span>
+    </div>
+
+    <div id="menu">
+      <ul class="nav">
+        <li class="navitem"><a href="/">Home</a></li>
+        <li class="navitem"><a href="/mypage">My page</a></li>
+      </ul>
+    </div>
+
+    <div id="content">
+       Access your API with the routes/actions defined in src/api/controllers and src/api/actions.
+       <br>
+       This entry-page can be removed then, or if you supply the frontend-spa over the same web-server then use as its index.html
+    </div>
+  </body>
+</html>
